@@ -1,7 +1,6 @@
 
 
-title_1, title_2, title_3 = input("Заголовок 1: "), input("Заголовок 2: "), input("Заголовок 3: ")
+title_1 = [input("Введите заголовок 1: "), input("Введите заголовок 2: "), input("Введите заголовок 3: ")]
 
-print(title_1)
-print(title_2)
-print(title_3)
+for i in range(len(title_1)):
+    print(f'Заголовок {i+1} - {title_1[i]}' )
