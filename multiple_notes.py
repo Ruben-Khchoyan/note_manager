@@ -116,9 +116,9 @@ while True:
 
 
 # Вывод всех заметок из списка notes в удобном формате.
-print("\nСписок заметок: ")
+print("\nСписок заметок:")
 for i in range(len(notes)):
-    print(i + 1, end=' ')
+    print(f'{i + 1}.', end='')
     for k, v in notes[i].items():
         print(f' {k}: {v}')
     print()

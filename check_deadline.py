@@ -44,9 +44,9 @@ if issue_date > date_user:
 elif issue_date.date() == date_user.date():
     print('Дедлайн сегодня!')
 elif date_deadline.days % 10 == 1:
-    print(f'Внимание! Дедлайн истек: {date_deadline.days} день назад.')
+    print(f'Внимание! Дедлайн истек {date_deadline.days} день назад.')
 elif date_deadline.days % 10 in [2, 3, 4]:
-    print(f'Внимание! Дедлайн истек: {date_deadline.days} дня назад.')
+    print(f'Внимание! Дедлайн истек {date_deadline.days} дня назад.')
 else:
-    print(f'Внимание! Дедлайн истек: {date_deadline.days} дней назад.')
+    print(f'Внимание! Дедлайн истек {date_deadline.days} дней назад.')
 
