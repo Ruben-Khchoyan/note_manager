@@ -1,26 +1,12 @@
-# Импорт модуля datetime
-from datetime import datetime as dt
-
-
 # Список со всеми заметками
 lst_notes = []
 
 
-# Функция для проверки соответствия введенный даты требуемым форматам
-def data_check(per):
-    for fmt in ('%Y-%m-%d', '%d.%m.%Y', '%d/%m/%Y', '%d-%m-%Y'):
-        try:
-            return dt.strptime(per, fmt)
-        except ValueError:
-            pass
-    else:
-        print('Введен неверный формат данных!')
-        return 0
-# Конец функции проверки введенной даты
-
-
 # Функция для создания заметок
 def create_note():
+    # Импорт модуля datetime
+    from datetime import datetime as dt
+
     # Цикл для введения имени пользователя и проверки чтобы не была пустая строка
     while True:
         user_name = input("Введите имя пользователя: ")
@@ -55,10 +41,21 @@ def create_note():
                 status = lst_status[int(num_status)-1].lower()
                 break
         print('Статус заметки введен не правильно!')
-        continue
+
+    # Функция для проверки соответствия введенный даты требуемым форматам
+    def data_check(per):
+        for fmt in ('%Y-%m-%d', '%d.%m.%Y', '%d/%m/%Y', '%d-%m-%Y'):
+            try:
+                return dt.strptime(per, fmt)
+            except ValueError:
+                pass
+        else:
+            print('Введен неверный формат данных!')
+            return 0
+    # Конец функции проверки введенной даты
 
 
-    # Цикл для ввода даты создания и дедлайна заметки.
+    # Цикл для ввода дедлайна заметки. Дата создания автоматически является текущий день
     # Через if и функцию check проверятся правильность введения формата данных
     while True:
         print(f'Форматы ввода дат:\n- ГГГГ-ММ-ДД\n- ДД.ММ.ГГГГ\n- ДД/ММ/ГГГГ\n- ДД-ММ-ГГГГ')
@@ -105,7 +102,6 @@ while True:
         print('\nНе корректный ответ!\n')
     elif create_new_note.strip().lower() == 'да':
         lst_notes.append(create_note())
-        continue
     elif create_new_note.strip().lower() == 'нет':
         break
 
@@ -115,7 +111,7 @@ if len(lst_notes) == 0:
     print('Список заметок пуст!')
 elif len(lst_notes) == 1:
     print('Заметка создана:\n', lst_notes[0])
-elif len(lst_notes) > 1:
+else:
     print('Заметки созданы:')
     for i in range(len(lst_notes)):
         print(f'{i + 1}. {lst_notes[i]}')
