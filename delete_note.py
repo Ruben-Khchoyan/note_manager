@@ -13,21 +13,27 @@ lst_notes = [{'Имя пользователя': 'Дима',
           'Дедлайн': '12-12-1444'}]
 
 
-# Вывод текущих заметок
-if len(lst_notes) == 1:
-    print('Текущая заметка:')
-    for i in range(len(lst_notes)):
-        for k, v in lst_notes[i].items():
-            print(f'{k}: {v}')
-        print()
-elif len(lst_notes) == 0:
-    print('\nCписок заметок пуст!')
-else:
-    print('Текущие заметки:')
-    for i in range(len(lst_notes)):
-        for k, v in lst_notes[i].items():
-            print(f'{k}: {v}')
-        print()
+# Функция для вывода текущих заметок
+def output_notes(notes):
+    if len(notes) == 1:
+        print('Текущая заметка:')
+        for i in range(len(notes)):
+            for k, v in notes[i].items():
+                print(f'{k}: {v}')
+            print()
+    elif len(notes) == 0:
+        print('\nCписок заметок пуст!')
+    else:
+        print('Текущие заметки:')
+        for i in range(len(notes)):
+            for k, v in notes[i].items():
+                print(f'{k}: {v}')
+            print()
+            # Конец функции
+
+
+# Вывод текущих заметок при помощи функции output_notes
+output_notes(lst_notes)
 
 
 # Функция для удаления заметок note по ключевым словам word
@@ -69,17 +75,26 @@ def del_note(word, note):
     # Условный оператор для сравнения длины списков до и после удаления.
     # Если длины одинаковые то заметок в списке не найдено по словам word
     if len_before_remove == len_after_remove:
-        print('\nЗаметок с таким именем пользователя или заголовком не найдено.') # Конец функции
+        print('\nЗаметок с таким именем пользователя или заголовком не найдено или заметки не удалены.')
+        # Конец функции
 
 
-# Цикл для удаления заметок при наличии заметок в списке
+# Цикл для удаления заметок при желании удалить заметки и их наличии в списке
 while True:
-    if lst_notes == []:
-        print("\nCписок заметок пуст")
-        break
+    if len(lst_notes) != 0:
+        del_solve = input('Желаете удалить заметки? (да/нет): ')
+        if del_solve not in ['да', 'нет']:
+            print('\nНе корректный ответ!\n')
+            continue
+        elif del_solve == 'да':
+            output_notes(lst_notes)
+            note_word = input('Введите имя пользователя или заголовок для удаления заметки: ')
+            del_note(note_word, lst_notes)
+            continue
+        elif del_solve == 'нет':
+            break
     else:
-        note_word= input('Введите имя пользователя или заголовок для удаления заметки: ')
-        del_note(note_word, lst_notes)
+        print("\nCписок заметок пуст.")
         break
 
 
@@ -90,9 +105,7 @@ if len(lst_notes) == 1:
         for k, v in lst_notes[i].items():
             print(f'{k}: {v}')
         print()
-elif len(lst_notes) == 0:
-    print('\nCписок заметок пуст')
-else:
+elif len(lst_notes) > 1:
     print('\nОстались следующие заметки:')
     for i in range(len(lst_notes)):
         for k, v in lst_notes[i].items():
