@@ -87,7 +87,7 @@ def display_notes(notes):
             # Если количество заметок в списке больше 1
             if len(notes) > 1:
                 print('Список заметок:')
-                lst_dict_values = [] # Список с списками всех значений
+                lst_dict_values = [] # Список всех значений
                 for i in range(len(notes)): # Цикл вывода списков со всеми значениями
                     lst_dict_values.append([i + 1] + list(notes[i].values()))
 
