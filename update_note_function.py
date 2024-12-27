@@ -1,41 +1,39 @@
 
-# Список с заметками в виде словаря
-lst_notes = [{'username': 'Алексей',
-              'title': 'Список дел',
-              'content': 'Купить продукты на неделю',
-              'status': 'новая',
-              'created_date': '18-11-2024',
-              'issue_date': '19-11-2024'},
-
-             {'username': 'Петя',
-              'title': 'Список овощей',
-              'content': 'Купить грибы и помидоры',
-              'status': 'в процессе',
-              'created_date': '01-11-2024',
-              'issue_date': '30-11-2024'},
-
-             {'username': 'Илья',
-              'title': 'Починить машину',
-              'content': 'Купить клапана и свечи',
-              'status': 'новая',
-              'created_date': '04-11-2024',
-              'issue_date': '20-11-2024'}]
+# # Список с заметками в виде словаря
+# lst_notes = [{'username': 'Алексей',
+#               'title': 'Список дел',
+#               'content': 'Купить продукты на неделю',
+#               'status': 'новая',
+#               'created_date': '18-11-2024',
+#               'issue_date': '19-11-2024'},
+#
+#              {'username': 'Петя',
+#               'title': 'Список овощей',
+#               'content': 'Купить грибы и помидоры',
+#               'status': 'в процессе',
+#               'created_date': '01-11-2024',
+#               'issue_date': '30-11-2024'},
+#
+#              {'username': 'Илья',
+#               'title': 'Починить машину',
+#               'content': 'Купить клапана и свечи',
+#               'status': 'новая',
+#               'created_date': '04-11-2024',
+#               'issue_date': '20-11-2024'}]
 
 
 # Функция вывод заметок из списка заметок.
 def output_notes(notes):
-    if len(notes) == 0:
-        print('\nСписок заметок пуст!')
-    elif len(notes) == 1:
-        print('\nТекущая заметка:\n', notes[0])
-    else:
-        print('\nТекущие заметки:')
-        for i in range(len(notes)):
-            print(f'{i + 1}. {notes[i]}')
+    import termtables as tt
+    type_info = ['№', 'Имя пользователя', 'Заголовок', 'Описание', 'Статус', 'Дата создания', 'Дедлайн']
+    for_display = []
+    for i, v in enumerate(notes):
+        for_display.append([i + 1] + list(v.values()))
+    print(tt.to_string(for_display, header=type_info))  # Вывод таблицы с полной информацией
 
 
-# Вывод заметок первоначальный
-output_notes(lst_notes)
+# # Вывод заметок первоначальный
+# output_notes(lst_notes)
 
 
 # Начало функции изменения заметок
@@ -44,6 +42,9 @@ def update_note(note):
     # Импорт модуля datetime
     from datetime import datetime as dt
 
+    import termtables as tt
+
+    type_info = ['№', 'Имя пользователя', 'Заголовок', 'Описание', 'Статус', 'Дата создания', 'Дедлайн']
 
     # Функция для проверки соответствия введенный даты требуемым форматам
     def data_check(per):
@@ -94,25 +95,27 @@ def update_note(note):
         else: # Если не правильно введено наименование данных заметки
             print('\nНе корректный ответ!')
 
-
-    print(f'\nЗаметка обновлена:\n {note}')
+    print(f'\nЗаметка обновлена:')
+    print(tt.to_string([list(note.values())], header=type_info[1:]))
 # Конец функции изменения заметок
 
 
-# Цикл для изменения заметок вызовом функции update_note. В случае отказа цикл завершается.
-while True:
-    question = input("\nЖелаете изменить данные заметки? (да/нет): ")
-    if question.strip().lower() not in ['да', 'нет']: # Условный оператор выводящий замечание если не првильно дан ответ на вопрос
-        print('\nНе корректный ответ!')
-    elif question.strip().lower() == 'да':
-        output_notes(lst_notes)
-        note_num = input('\nВыберите номер заметки, которую хотите изменить: ').strip()
-        if note_num.isdigit() and int(note_num) in range(len(lst_notes) + 1): # Проверка введеного номера заметки в списке заметок
-            update_note(lst_notes[int(note_num) - 1])
-        else: # Выводит замечение если заметки с таким номером не существует
-            print("\nВведен неверный номер заметки!")
-    elif question.strip().lower() == 'нет': # Если измений заметкам не требуется или больше изменений не требуется, то выводиться актуальный список заметок
-        output_notes(lst_notes)
-        break
 
-
+# # Цикл для изменения заметок вызовом функции update_note. В случае отказа цикл завершается.
+# while True:
+#     question = input("\nЖелаете изменить данные заметки? (да/нет): ")
+#     if question.strip().lower() not in ['да',
+#                                         'нет']:  # Условный оператор выводящий замечание если не првильно дан ответ на вопрос
+#         print('\nНе корректный ответ!')
+#     elif question.strip().lower() == 'да':
+#         output_notes(lst_notes)
+#         note_num = input('\nВыберите номер заметки, которую хотите изменить: ').strip()
+#         if note_num.isdigit() and int(note_num) in range(
+#                 len(lst_notes) + 1):  # Проверка введеного номера заметки в списке заметок
+#             update_note(lst_notes[int(note_num) - 1])
+#         else:  # Выводит замечение если заметки с таким номером не существует
+#             print("\nВведен неверный номер заметки!")
+#     elif question.strip().lower() == 'нет':  # Если измений заметкам не требуется или больше изменений не требуется, то выводиться актуальный список заметок
+#         output_notes(lst_notes)
+#         break
+# output_notes(lst_notes)

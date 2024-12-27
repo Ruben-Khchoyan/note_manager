@@ -1,5 +1,5 @@
-# Список со всеми заметками
-lst_notes = []
+# # Список со всеми заметками
+# lst_notes = []
 
 
 # Функция для создания заметок
@@ -9,7 +9,7 @@ def create_note():
 
     # Цикл для введения имени пользователя и проверки чтобы не была пустая строка
     while True:
-        user_name = input("Введите имя пользователя: ")
+        user_name = input("\nВведите имя пользователя: ")
         if user_name.strip() == '':
             continue
         break
@@ -91,27 +91,27 @@ def create_note():
 # Конец функции создания заметок
 
 
-# Добавление первой заметки
-lst_notes.append(create_note())
+# # Добавление первой заметки
+# lst_notes.append(create_note())
+#
+#
+# # Цикл для создания дополнительных заметок. В случае отказа цикл завершается.
+# while True:
+#     create_new_note = input("Хотите добавить ещё одну заметку? (да/нет): ")
+#     if create_new_note.strip().lower() not in ['да', 'нет']:
+#         print('\nНе корректный ответ!\n')
+#     elif create_new_note.strip().lower() == 'да':
+#         lst_notes.append(create_note())
+#     elif create_new_note.strip().lower() == 'нет':
+#         break
 
 
-# Цикл для создания дополнительных заметок. В случае отказа цикл завершается.
-while True:
-    create_new_note = input("Хотите добавить ещё одну заметку? (да/нет): ")
-    if create_new_note.strip().lower() not in ['да', 'нет']:
-        print('\nНе корректный ответ!\n')
-    elif create_new_note.strip().lower() == 'да':
-        lst_notes.append(create_note())
-    elif create_new_note.strip().lower() == 'нет':
-        break
-
-
-# Вывод всех заметок из списка lst_notes.
-if len(lst_notes) == 0:
-    print('Список заметок пуст!')
-elif len(lst_notes) == 1:
-    print('Заметка создана:\n', lst_notes[0])
-else:
-    print('Заметки созданы:')
-    for i in range(len(lst_notes)):
-        print(f'{i + 1}. {lst_notes[i]}')
+# # Вывод всех заметок из списка lst_notes.
+# if len(lst_notes) == 0:
+#     print('Список заметок пуст!')
+# elif len(lst_notes) == 1:
+#     print('Заметка создана:\n', lst_notes[0])
+# else:
+#     print('Заметки созданы:')
+#     for i in range(len(lst_notes)):
+#         print(f'{i + 1}. {lst_notes[i]}')
