@@ -1,44 +1,4 @@
 
-# Импорт модуля termtables (просто нравиться формат вывода)
-import termtables as tt
-
-
-# lst_notes = [{'username': 'Алексей',
-#               'title': 'Список дел',
-#               'content': 'Купить продукты на неделю',
-#               'status': 'новая',
-#               'created_date': '18-11-2024',
-#               'issue_date': '19-11-2024'},
-#
-#              {'username': 'Петя',
-#               'title': 'Список овощей',
-#               'content': 'Купить грибы и помидоры',
-#               'status': 'в процессе',
-#               'created_date': '01-11-2024',
-#               'issue_date': '30-11-2024'},
-#
-#              {'username': 'Илья',
-#               'title': 'Починить машину',
-#               'content': 'Купить клапана и свечи',
-#               'status': 'новая',
-#               'created_date': '04-11-2024',
-#               'issue_date': '20-11-2024'}]
-
-
-# Функция для вывода текущих заметок
-def output_notes(notes):
-    import termtables as tt
-    for_display = []
-    type_info = ['№', 'Имя пользователя', 'Заголовок', 'Описание', 'Статус', 'Дата создания', 'Дедлайн']
-    for i, v in enumerate(notes):
-        for_display.append([i + 1] + list(v.values()))
-    print(tt.to_string(for_display, header=type_info))  # Вывод таблицы с полной информацией
-
-
-# # Вывод заметок через функцию output_notes()
-# output_notes(lst_notes)
-
-
 # Функция для удаления заметок note по ключевым словам word
 def del_note(notes):
 
@@ -86,6 +46,7 @@ def del_note(notes):
                                 else:
                                     print('\nНе корректный ответ!\n')
                                     continue
+                break
 
 
             if len(ind_del_note) >= 1:
@@ -113,6 +74,42 @@ def del_note(notes):
 # Конец функции
 
 
-# # Вызов функции удаления заметок
-# del_note(lst_notes)
+if __name__ == '__main__':
+
+    lst_notes = [{'username': 'Алексей',
+                  'title': 'Список дел',
+                  'content': 'Купить продукты на неделю',
+                  'status': 'новая',
+                  'created_date': '18-11-2024',
+                  'issue_date': '19-11-2024'},
+
+                 {'username': 'Петя',
+                  'title': 'Список овощей',
+                  'content': 'Купить грибы и помидоры',
+                  'status': 'в процессе',
+                  'created_date': '01-11-2024',
+                  'issue_date': '30-11-2024'},
+
+                 {'username': 'Илья',
+                  'title': 'Починить машину',
+                  'content': 'Купить клапана и свечи',
+                  'status': 'новая',
+                  'created_date': '04-11-2024',
+                  'issue_date': '20-11-2024'}]
+
+
+    # Функция для вывода текущих заметок
+    def output_notes(notes):
+        import termtables as tt
+        for_display = []
+        type_info = ['№', 'Имя пользователя', 'Заголовок', 'Описание', 'Статус', 'Дата создания', 'Дедлайн']
+        for i, v in enumerate(notes):
+            for_display.append([i + 1] + list(v.values()))
+        print(tt.to_string(for_display, header=type_info))  # Вывод таблицы с полной информацией
+
+
+    # Вывод заметок через функцию output_notes()
+    output_notes(lst_notes)
+    # Вызов функции удаления заметок
+    del_note(lst_notes)
 
